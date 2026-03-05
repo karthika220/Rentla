@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function validateForm(wrap) {
-    const inputs = wrap.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"]');
+    const inputs = wrap.querySelectorAll('input[type="text"], input[type="tel"]');
     let valid = true;
     inputs.forEach(inp => {
       if (!inp.value.trim()) {
