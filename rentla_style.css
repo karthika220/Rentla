@@ -725,7 +725,21 @@ a { text-decoration: none; color: inherit; }
 }
 .float-wa:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(232,160,32,0.55); }
 .float-left { left: 24px; }
-.float-right { right: 24px; bottom: 40px; }
+.float-right { right: 24px; bottom: 24px; }
+
+/* Zoho SalesIQ Chat Button Styling */
+#zsiq_float {
+  background: var(--yellow) !important;
+  bottom: 100px !important;
+  right: 24px !important;
+}
+#zsiq_float .zsiq_floatmain {
+  background: var(--yellow) !important;
+}
+#zsiq_float .zsiq_floatmain svg,
+#zsiq_float .zsiq_floatmain img {
+  filter: brightness(0) invert(1);
+}
 
 /* ══════════════════════════════════════════
    RESPONSIVE
