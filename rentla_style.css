@@ -901,14 +901,14 @@ a { text-decoration: none; color: inherit; }
 }
 
 .thankyou-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 .thankyou-text {
   max-width: 600px;
+  text-align: center;
 }
 
 .thankyou-heading {
@@ -942,39 +942,14 @@ a { text-decoration: none; color: inherit; }
   background: var(--navy-mid);
 }
 
-.thankyou-illustration {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.thankyou-illustration svg {
-  max-width: 100%;
-  height: auto;
-}
-
 /* Responsive Thank You Page */
 @media (max-width: 900px) {
-  .thankyou-content {
-    grid-template-columns: 1fr;
-    gap: 60px;
-    text-align: center;
-  }
-  
   .thankyou-heading {
     font-size: 2.2rem;
   }
   
   .thankyou-text {
     max-width: 100%;
-  }
-  
-  .thankyou-illustration {
-    order: -1;
-  }
-  
-  .thankyou-illustration svg {
-    max-width: 250px;
   }
 }
 
@@ -985,9 +960,5 @@ a { text-decoration: none; color: inherit; }
   
   .thankyou-message {
     font-size: 0.95rem;
-  }
-  
-  .thankyou-illustration svg {
-    max-width: 200px;
   }
 }
