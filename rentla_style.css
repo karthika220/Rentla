@@ -725,7 +725,7 @@ a { text-decoration: none; color: inherit; }
 }
 .float-wa:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(232,160,32,0.55); }
 .float-left { left: 24px; }
-.float-right { right: 24px; }
+.float-right { right: 24px; bottom: 40px; }
 
 /* ══════════════════════════════════════════
    RESPONSIVE
@@ -740,11 +740,16 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* Tablet View (≤1024px) */
-@media (max-width: 1024px) {
-  .hero-heading { font-size: 2.2rem; }
-  .hero-sub { font-size: 0.9rem; }
+@media (max-width: 1024px) and (min-width: 769px) {
+  .hero {
+    grid-template-columns: 2fr 1fr;
+  }
+  .hero-text-block {
+    display: none;
+  }
   .hero-banner-img { object-fit: cover; }
   .hero-form-section { padding: 48px 32px; }
+  .form-title { font-size: 1.4rem; }
 }
 
 /* Mobile View (≤768px) */
