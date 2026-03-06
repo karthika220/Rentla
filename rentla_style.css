@@ -217,13 +217,13 @@ a { text-decoration: none; color: inherit; }
 .hero-heading {
   font-size: 2.6rem;
   font-weight: 900;
-  color: #000000;
+  color: var(--white);
   line-height: 1.15;
   margin-bottom: 18px;
 }
 .hero-sub {
   font-size: 0.95rem;
-  color: #444444;
+  color: var(--white);
   line-height: 1.7;
   margin-bottom: 32px;
 }
@@ -840,10 +840,12 @@ a { text-decoration: none; color: inherit; }
   .hero-heading {
     font-size: 1.8rem;
     margin-bottom: 16px;
+    color: #000000;
   }
   .hero-sub {
     font-size: 0.9rem;
     margin-bottom: 24px;
+    color: #000000;
   }
   .hero-text-block .btn-yellow {
     display: inline-block;
@@ -892,8 +894,14 @@ a { text-decoration: none; color: inherit; }
 
 /* Small Mobile (≤600px) */
 @media (max-width: 600px) {
-  .hero-heading { font-size: 1.6rem; }
-  .hero-sub { font-size: 0.85rem; }
+  .hero-heading { 
+    font-size: 1.6rem; 
+    color: #000000;
+  }
+  .hero-sub { 
+    font-size: 0.85rem; 
+    color: #000000;
+  }
   .browse-grid { grid-template-columns: 1fr; }
   .hero-banner-img {
     max-height: 300px;
