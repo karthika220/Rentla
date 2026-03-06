@@ -9,8 +9,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WMFLW93');</script>
+  <!-- End Google Tag Manager -->
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMFLW93"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- ════════════════════════════════
        NAVBAR
@@ -46,7 +58,8 @@
   <section class="hero" id="home">
     <!-- Banner area with content -->
     <div class="hero-banner">
-      <img src="assets/Section 1/Hero Banner.jpeg" alt="Banner" class="hero-banner-img" />
+      <img src="assets/Section 1/Hero Banner.jpeg" alt="Banner" class="hero-banner-img hero-banner-desktop" />
+      <img src="assets/Section 1/Mobile Banner.jpg.jpeg" alt="Banner" class="hero-banner-img hero-banner-mobile" />
       <div class="hero-text-block">
         <h1 class="hero-heading">Rent Enterprise-Grade IT Equipment</h1>
         <p class="hero-sub">Brand-new laptops, desktops and servers<br> for corporates, startup and SMEs in Chennai.</p>
@@ -406,5 +419,39 @@
 
   <script src="rentla_script.js"></script>
   <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.in/widget?wc=siq452d824dff8b361546d7affd95828c3ce24833e0c19e27c3ea6c1179c3ddd22b" defer></script>
+
+  <script>
+    // Initialize dataLayer for GTM (already initialized by GTM script above)
+    window.dataLayer = window.dataLayer || [];
+    
+    $zoho.salesiq.ready = function () {
+    
+      /* Track when chat ends - Conversion Event */
+    
+      $zoho.salesiq.chat.end(function () {
+    
+          // Track Zoho chat end as conversion
+          dataLayer.push({
+              event: "zoho_chat_end",
+              chat_status: "completed",
+              event_category: "conversion",
+              event_label: "zoho_chat_completed",
+              conversion_type: "chat_contact"
+          });
+          
+          // Track Google Ads conversion for Chat End
+          dataLayer.push({
+              event: "conversion",
+              send_to: "AW-CONVERSION_ID/CHAT_CONVERSION_LABEL", // Replace with your Chat conversion label
+              value: 1.0,
+              currency: "INR",
+              conversion_type: "zoho_chat_end"
+          });
+    
+      });
+    
+    };
+    
+    </script>
 </body>
 </html>

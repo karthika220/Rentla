@@ -8,8 +8,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WMFLW93');</script>
+  <!-- End Google Tag Manager -->
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMFLW93"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- ════════════════════════════════
        NAVBAR
@@ -55,5 +67,30 @@
 
   <script src="rentla_script.js"></script>
   <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.in/widget?wc=siq452d824dff8b361546d7affd95828c3ce24833e0c19e27c3ea6c1179c3ddd22b" defer></script>
+  
+  <script>
+    // Initialize dataLayer if not already initialized
+    window.dataLayer = window.dataLayer || [];
+    
+    // Track form submission conversion ONLY when user reaches thank you page
+    // This ensures accurate conversion tracking - only successful form submissions count
+    window.dataLayer.push({
+      'event': 'form_submission_conversion',
+      'conversion_type': 'form_submission_success',
+      'page_type': 'thank_you',
+      'event_category': 'conversion',
+      'event_label': 'form_submission_completed'
+    });
+    
+    // Track Google Ads conversion for Form Submission
+    // This fires ONLY when user successfully submits form and sees thank you page
+    window.dataLayer.push({
+      'event': 'conversion',
+      'send_to': 'AW-CONVERSION_ID/FORM_SUBMISSION_CONVERSION_LABEL', // Replace with your Form Submission conversion label
+      'value': 1.0,
+      'currency': 'INR',
+      'conversion_type': 'form_submission'
+    });
+  </script>
 </body>
 </html>

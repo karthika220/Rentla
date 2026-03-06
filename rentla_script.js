@@ -93,13 +93,32 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   }
 
+  /* ─── GA4 EVENT TRACKING ─── */
+  function trackEvent(eventName, eventParams = {}) {
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        'event': eventName,
+        ...eventParams
+      });
+    }
+  }
+
   // Hero form
   const heroSubmit = document.querySelector('.hero-submit');
   if (heroSubmit) {
     heroSubmit.addEventListener('click', () => {
       const wrap = heroSubmit.closest('.enquire-form').parentElement;
-      if (validateForm(document.querySelector('.enquire-form'))) {
-        // Redirect to thank you page
+      const form = document.querySelector('.enquire-form');
+      if (validateForm(form)) {
+        // Track form submission event (conversion will fire on thank you page only)
+        trackEvent('form_submission', {
+          form_type: 'hero_enquiry',
+          form_location: 'hero_section',
+          event_category: 'form',
+          event_label: 'hero_form_submit'
+        });
+        
+        // Redirect to thank you page (conversion tracked there)
         window.location.href = 'thankyou.html';
       }
     });
@@ -111,7 +130,15 @@ document.addEventListener('DOMContentLoaded', () => {
     contactSubmit.addEventListener('click', () => {
       const wrap = contactSubmit.closest('.contact-form-side');
       if (validateForm(wrap)) {
-        // Redirect to thank you page
+        // Track form submission event (conversion will fire on thank you page only)
+        trackEvent('form_submission', {
+          form_type: 'contact_enquiry',
+          form_location: 'contact_section',
+          event_category: 'form',
+          event_label: 'contact_form_submit'
+        });
+        
+        // Redirect to thank you page (conversion tracked there)
         window.location.href = 'thankyou.html';
       }
     });
@@ -173,6 +200,96 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+
+  /* ─── CONVERSION TRACKING ─── */
+  
+  // Track ALL WhatsApp button clicks - Unified Conversion Event
+  document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"], a[href*="WhatsApp"]').forEach(whatsappBtn => {
+    whatsappBtn.addEventListener('click', function(e) {
+      // Track WhatsApp click event
+      trackEvent('whatsapp_click', {
+        event_category: 'conversion',
+        event_label: 'whatsapp_click',
+        button_location: this.closest('section')?.id || this.closest('header')?.id || 'unknown',
+        conversion_type: 'whatsapp_contact'
+      });
+      
+      // Track Google Ads conversion for WhatsApp
+      trackEvent('conversion', {
+        send_to: 'AW-CONVERSION_ID/WHATSAPP_CONVERSION_LABEL', // Replace with your WhatsApp conversion label
+        value: 1.0,
+        currency: 'INR',
+        conversion_type: 'whatsapp_click'
+      });
+    });
+  });
+
+  // Track ALL Call button clicks - Unified Conversion Event
+  document.querySelectorAll('a[href^="tel:"]').forEach(callBtn => {
+    callBtn.addEventListener('click', function(e) {
+      const phoneNumber = this.getAttribute('href').replace('tel:', '');
+      
+      // Track phone call event
+      trackEvent('phone_call', {
+        event_category: 'conversion',
+        event_label: 'phone_call_click',
+        phone_number: phoneNumber,
+        button_location: this.closest('section')?.id || this.closest('header')?.id || 'unknown',
+        conversion_type: 'phone_contact'
+      });
+      
+      // Track Google Ads conversion for Phone Call
+      trackEvent('conversion', {
+        send_to: 'AW-CONVERSION_ID/CALL_CONVERSION_LABEL', // Replace with your Call conversion label
+        value: 1.0,
+        currency: 'INR',
+        conversion_type: 'phone_call'
+      });
+    });
+  });
+
+  /* ─── ENGAGEMENT TRACKING (Non-conversion events) ─── */
+  // Track "Rent a Laptop Now" button clicks (engagement only, not conversion)
+  document.querySelectorAll('.btn-yellow').forEach(btn => {
+    if (btn.textContent.includes('Rent a Laptop Now') || btn.textContent.includes('Request a Free Quote')) {
+      btn.addEventListener('click', () => {
+        trackEvent('cta_click', {
+          button_text: btn.textContent.trim(),
+          button_location: btn.closest('section')?.id || 'header',
+          event_category: 'engagement',
+          event_label: 'rent_laptop_cta'
+        });
+      });
+    }
+  });
+
+  // Track "Explore All Products" button (engagement only)
+  document.querySelectorAll('.btn-navy').forEach(btn => {
+    if (btn.textContent.includes('Explore')) {
+      btn.addEventListener('click', () => {
+        trackEvent('cta_click', {
+          button_text: btn.textContent.trim(),
+          button_location: 'browse_section',
+          event_category: 'engagement',
+          event_label: 'explore_products'
+        });
+      });
+    }
+  });
+
+  // Track "Talk to Our Team" button (engagement only)
+  document.querySelectorAll('.btn-yellow').forEach(btn => {
+    if (btn.textContent.includes('Talk to Our Team')) {
+      btn.addEventListener('click', () => {
+        trackEvent('cta_click', {
+          button_text: btn.textContent.trim(),
+          button_location: 'cta_section',
+          event_category: 'engagement',
+          event_label: 'talk_to_team'
+        });
+      });
+    }
+  });
 
   /* ─── IMAGE ERROR HANDLING ─── */
   document.querySelectorAll('img').forEach(img => {
